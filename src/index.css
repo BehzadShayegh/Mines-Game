@@ -56,6 +56,10 @@ body {
     color: red;
   }
 
-  .set-board-size {
+  .set-board {
     background-color: orange;
+  }
+  .flag-pick {
+    background-color: red;
+    color: black;
   }

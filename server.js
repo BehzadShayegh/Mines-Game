@@ -2,16 +2,13 @@
 const express = require('express');
 const favicon = require('express-favicon');
 const path = require('path');
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 const app = express();
-app.use(favicon('./' + '/public/favicon.ico'));
-// the './' is the corrent directory from where the script is running
-app.use(express.static('./'));
-app.use(express.static(path.join('./', 'build')));
-app.get('/ping', function(req, res){
-  return res.send('ping');
-});
-app.get('/*', function(req, res){
-  res.sendFile(path.join('./', 'build', 'public/index.html'));
+
+app.use(express.static('public'));
+app.use(favicon(__dirname + 'public/favicon.ico'));
+app.use(express.static(path.join(__dirname, 'build')));
+app.get('/', function(req, res){
+  res.sendFile(path.join(__dirname, 'build', 'public/index.html'));
 });
 app.listen(port);
