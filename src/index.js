@@ -300,7 +300,7 @@ class Game extends React.Component {
           <button
             class = "set-board"
             onClick = {() => this.setBoardSize()}
-            style={{width: 3*setSquareSize(this.state.width), height: setSquareSize(this.state.width), 'font-size': setSquareSize(this.state.width)/3}}
+            style={{width: 3*setSquareSize(this.state.width), height: setSquareSize(this.state.width), 'font-size': setSquareSize(this.state.width)/4}}
           >Manange Board
           </button>
           <button
