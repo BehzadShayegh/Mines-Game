@@ -35,6 +35,14 @@ class Board extends React.Component {
     };
   }
 
+  reloadBoard() {
+    this.setState({
+      clickedSquares: Array(this.totalSize).fill(false),
+      emptySquaresNumber: 0,
+    });
+    this.props.reloaded();
+  }
+
   handleClick(i, emptySquaresNumber) {
     if(this.props.values[i]==='*') {
       this.props.setLose();
@@ -46,7 +54,7 @@ class Board extends React.Component {
       emptySquaresNumber.esn++;
       if(this.props.values[i]===' ')
         this.showNeighbours(i, emptySquaresNumber);
-      this.setState({clickedSquares: clickedSquares, emptySquaresNumber: emptySquaresNumber.esn});
+        this.setState({clickedSquares: clickedSquares, emptySquaresNumber: emptySquaresNumber.esn});
     }
     if(emptySquaresNumber.esn === this.props.length*this.props.width - this.props.bombsNumber) {
       this.props.setWin();
@@ -123,6 +131,8 @@ class Board extends React.Component {
     let width = this.props.width;
     let rows = Array(length);
 
+    if(this.props.reload) this.reloadBoard();
+
     for(let row=0; row<length; row++)
       rows[row] = this.renderRow(row,width);
 
@@ -178,16 +188,18 @@ class Game extends React.Component {
       values: valueSeter(10, 10, 10),
       winStatus: false,
       loseStatus: false,
+      reload: true,
     };
   }
 
   setWin() {
-    let winStatus = true;
-    this.setState({winStatus: winStatus});
+    this.setState({winStatus: true});
   }
   setLose() {
-    let loseStatus = true;
-    this.setState({loseStatus: loseStatus});
+    this.setState({loseStatus: true});
+  }
+  setReloaded() {
+    this.setState({reload: false});
   }
 
   renderGameInfo(winStatus, loseStatus) {
@@ -217,16 +229,25 @@ class Game extends React.Component {
     let length = Number(prompt('Length:'));
     let width = Number(prompt('Width:'));
     let bombsNumber = Number(prompt('Bombs number:'));
-    let winStatus = false;
-    let loseStatus = false;
     let values = valueSeter(length, width, bombsNumber);
     this.setState({
       length: length,
       width: width,
       bombsNumber: bombsNumber,
-      winStatus: winStatus,
-      loseStatus: loseStatus,
+      winStatus: false,
+      loseStatus: false,
       values: values,
+      reload: true,
+    });
+  }
+
+  resetBoard() {
+    let values = valueSeter(this.state.length, this.state.width, this.state.bombsNumber);
+    this.setState({
+      winStatus: false,
+      loseStatus: false,
+      values: values,
+      reload: true,
     });
   }
 
@@ -241,12 +262,20 @@ class Game extends React.Component {
             bombsNumber={this.state.bombsNumber}
             setWin={() => this.setWin()}
             setLose={() => this.setLose()}
+            reload={this.state.reload}
+            reloaded={() => this.setReloaded()}
           />
           <button
             class = "set-board-size"
             onClick = {() => this.setBoardSize()}
             style={{width: 3*setSquareSize(this.state.width), height: setSquareSize(this.state.width), 'font-size': setSquareSize(this.state.width)/3}}
           >Manange Board
+          </button>
+          <button
+            class = "set-board-size"
+            onClick = {() => this.resetBoard()}
+            style={{width: 1.5*setSquareSize(this.state.width), height: setSquareSize(this.state.width), 'font-size': setSquareSize(this.state.width)/3}}
+          >Reset
           </button>
         </div>
         <div className="game-info">
