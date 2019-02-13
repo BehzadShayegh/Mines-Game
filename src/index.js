@@ -292,3 +292,5 @@ ReactDOM.render(
   <Game/>,
   document.getElementById('root')
 );
+
+//react-scripts start
