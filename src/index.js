@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-
 function setSquareSize(columnsNumber) {
   let baseSize = Math.min(window.innerWidth,window.innerHeight);
   return baseSize/(columnsNumber+5);
