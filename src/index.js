@@ -130,7 +130,7 @@ class Board extends React.Component {
           style={{width: setSquareSize(width), height: setSquareSize(width)}}
         />
       </div>
-    )
+    );
   }
 
   renderGurdRow(width) {
