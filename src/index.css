@@ -3,52 +3,45 @@ body {
     margin: 20px;
     display: flex;
     justify-content: center;
-    background-color: #ffdff1;
-  }
-  
-  ol, ul {
-    padding-left: 30px;
-  }
-  
-  .board-row:after {
-    clear: both;
-    content: "";
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .status {
-    margin-bottom: 50px;
+    background-color: #313131;
+    background-image: url("https://wallpaper.wiki/wp-content/uploads/2017/04/wallpaper.wiki-Cool-dark-widescreen-wallpapers-1920x1080-PIC-WPD009264.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-attachment: fixed;
   }
   
   .square {
-    background: #22aaaa;
-    border: 1px solid #999;
+    background: #113838;
+    border: 1px solid rgb(131, 131, 131);
     float: left;
     font-weight: bold;
     margin-right: -1px;
     margin-top: -1px;
     padding: 0;
     text-align: center;
+    color: black;
   }
   
   .square:focus {
-    background-color: red;
-    outline: none;
+    background-color: rgb(255, 255, 255);
   }
   .square + .fill {
-    background-color: yellow;
+    background-color: rgb(6, 17, 26);
     outline: none;
+    color: white;
+    border: 0px;
   }
 
   .gurd {
-    background-color: green;
+    background-color: black;
+    border: 0px;
   }
   
   .game-info {
+    color: white;
     margin-left: 20px;
   }
-
   .win {
     color: green;
   }
@@ -56,10 +49,19 @@ body {
     color: red;
   }
 
-  .set-board {
-    background-color: orange;
+  .down-clicks {
+    background-color: black;
+    color: rgb(70, 0, 0);
+    border: 1px solid;
+    border-top: 0px;
   }
-  .flag-pick {
-    background-color: red;
-    color: black;
+  .top-clicks {
+    background-color: black;
+    color: rgb(70, 0, 0);
+    border: 1px solid;
+    border-bottom: 0px;
+  }
+
+  .fa-bomb {
+    color: rgb(70, 0, 0);
   }

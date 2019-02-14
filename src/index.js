@@ -9,24 +9,25 @@ function setSquareSize(columnsNumber) {
 
 function Square(props) {
   let flag = (props.flagy) ? <i class="fab fa-font-awesome-flag"></i> : null;
-    return (props.clicked) ? 
+  let fill_in = (props.value === '*') ? <i class="fas fa-bomb"></i> : props.value;
+  return (props.clicked) ? 
     (<button
       className="square fill"
       style={{
         width: setSquareSize(props.columnsNumber),
         height: setSquareSize(props.columnsNumber),
         'font-size': setSquareSize(props.columnsNumber)/2,
-    }}> {props.value}
+    }}> {fill_in}
     </button>) :
 
     (<button
       className="square"
+      onClick={props.onClick}
       style={{
         width: setSquareSize(props.columnsNumber),
         height: setSquareSize(props.columnsNumber),
-        }}
-      onClick={props.onClick}
-    > {flag}
+        'font-size': setSquareSize(props.columnsNumber)/3
+      }}> {flag}
     </button>);
 }
 
@@ -52,10 +53,14 @@ class Board extends React.Component {
   handleClick(i, emptySquaresNumber) {
     if(this.props.flag) {
       let flagySquares = this.state.flagySquares;
+      (flagySquares[i]) ? this.props.flagRestore() : this.props.flagUse();
       flagySquares[i] = !flagySquares[i];
       this.setState({flagySquares: flagySquares});
       this.props.flagPut();
       return;
+    }
+    if(this.state.flagySquares[i]) {
+      this.props.flagRestore();
     }
 
     if(this.props.values[i]==='*') {
@@ -205,6 +210,7 @@ class Game extends React.Component {
       loseStatus: false,
       reload: true,
       flag: false,
+      flagsNumber: 10,
     };
   }
 
@@ -223,6 +229,12 @@ class Game extends React.Component {
   flagPut() {
     this.setState({flag:false});
   }
+  flagUse() {
+    this.setState({flagsNumber: this.state.flagsNumber - 1})
+  }
+  flagRestore() {
+    this.setState({flagsNumber: this.state.flagsNumber + 1})
+  }
 
   renderGameInfo(winStatus, loseStatus) {
     return (
@@ -236,7 +248,7 @@ class Game extends React.Component {
       (winStatus) ?
         (<h2
           class="win"
-          style={{'font-size': window.innerWidth/40,}}
+          style={{'font-size': window.innerWidth/20,}}
         >YOU WIN!!!
         </h2>) :
 
@@ -261,6 +273,7 @@ class Game extends React.Component {
       values: values,
       reload: true,
       flag: false,
+      flagsNumber: bombsNumber,
     });
   }
 
@@ -272,6 +285,7 @@ class Game extends React.Component {
       values: values,
       reload: true,
       flag: false,
+      flagsNumber: this.state.bombsNumber,
     });
   }
 
@@ -279,12 +293,21 @@ class Game extends React.Component {
     return (
       <div className="game">
         <div className="game-board">
-          <button
-            class = "flag-pick"
-            onClick = {() => this.flagPick()}
-            style={{width: setSquareSize(this.state.width), height: setSquareSize(this.state.width), 'font-size': setSquareSize(this.state.width)/3}}
-          ><i class="fab fa-font-awesome-flag"></i>
-          </button>
+
+          <div>
+            <button
+              class = "flag-pick top-clicks"
+              onClick = {() => this.flagPick()}
+              style={{width: setSquareSize(this.state.width), height: setSquareSize(this.state.width), 'font-size': setSquareSize(this.state.width)/3}}
+            ><i class="fab fa-font-awesome-flag"></i>
+            </button>
+            <button
+              class = "flags-number top-clicks"
+              style={{width: setSquareSize(this.state.width), height: setSquareSize(this.state.width), 'font-size': setSquareSize(this.state.width)/3}}
+            > {this.state.flagsNumber}
+            </button>
+          </div>
+
           <Board
             values={this.state.values}
             length={this.state.length}
@@ -296,20 +319,27 @@ class Game extends React.Component {
             reloaded={() => this.setReloaded()}
             flag={this.state.flag}
             flagPut={() => this.flagPut()}
+            flagUse={() => this.flagUse()}
+            flagRestore={() => this.flagRestore()}
           />
-          <button
-            class = "set-board"
-            onClick = {() => this.setBoardSize()}
-            style={{width: 3*setSquareSize(this.state.width), height: setSquareSize(this.state.width), 'font-size': setSquareSize(this.state.width)/4}}
-          >Manange Board
-          </button>
-          <button
-            class = "set-board"
-            onClick = {() => this.resetBoard()}
-            style={{width: setSquareSize(this.state.width), height: setSquareSize(this.state.width), 'font-size': setSquareSize(this.state.width)/3}}
-          ><i class="fas fa-undo"></i>
-          </button>
+
+          <div>
+            <button
+              class = "set-board down-clicks"
+              onClick = {() => this.setBoardSize()}
+              style={{width: 3*setSquareSize(this.state.width), height: setSquareSize(this.state.width), 'font-size': setSquareSize(this.state.width)/4}}
+            >Manange Board
+            </button>
+            <button
+              class = "reset-board down-clicks"
+              onClick = {() => this.resetBoard()}
+              style={{width: setSquareSize(this.state.width), height: setSquareSize(this.state.width), 'font-size': setSquareSize(this.state.width)/4}}
+            ><i class="fas fa-undo"></i>
+            </button>
+          </div>
+
         </div>
+
         <div className="game-info">
           {this.renderGameInfo(this.state.winStatus, this.state.loseStatus)}
         </div>
