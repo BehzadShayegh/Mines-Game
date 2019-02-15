@@ -7,7 +7,7 @@ class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      gamesList: ["Mines Detect","Zoooo","Tic Tac Toa","DONT OPEN ME!"],
+      gamesList: ["Mines Detect","Zoooo","Tic Tac Toa"],
     };
   }
 
@@ -62,10 +62,6 @@ class GameKeeper extends React.Component {
         <div class="mines-detect">
           <MinesDetect/>
         </div>
-      )
-    else if(gameName === "DONT OPEN ME!")
-      return (
-        <i class="fas fa-hand-middle-finger"></i>
       )
     
     else return (<p class="game-name">{gameName}</p>)
