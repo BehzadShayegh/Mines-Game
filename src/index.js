@@ -280,11 +280,10 @@ class Game extends React.Component {
   setBoardSize() {
     let length = Number(prompt('Length:'));
     if (!length) length = 10;
-    if (length > 100) length = 100;
 
     let width = Number(prompt('Width:'));
     if (!width) width = 10;
-    if (width > 100) width = 100;
+    if (width > 100) width = 60;
 
     let bombsNumber = Number(prompt('Bombs number:'));
     if (!bombsNumber) bombsNumber = width*length/10;
