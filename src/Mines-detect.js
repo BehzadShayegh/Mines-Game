@@ -1,5 +1,5 @@
 import React from 'react';
-import './minesDetect.css';
+import './Mines-detect.css';
 
 function setSquareSize(columnsNumber) {
   let baseSize = Math.min(window.innerWidth,window.innerHeight);
@@ -7,11 +7,11 @@ function setSquareSize(columnsNumber) {
 }
 
 function Square(props) {
-  let flag = (props.flagy) ? <i class="fab fa-font-awesome-flag"></i> : null;
-  let fill_in = (props.value === '*') ? <i class="fas fa-bomb"></i> : props.value;
+  let flag = (props.flagy) ? <i className="fab fa-font-awesome-flag"></i> : null;
+  let fill_in = (props.value === '*') ? <i className="fas fa-bomb"></i> : props.value;
   return (props.clicked) ? 
     (<button
-      className="square fill"
+      className="md-square fill"
       style={{
         width: setSquareSize(props.columnsNumber),
         height: setSquareSize(props.columnsNumber),
@@ -20,7 +20,7 @@ function Square(props) {
     </button>) :
 
     (<button
-      className="square"
+      className="md-square"
       onClick={props.onClick}
       style={{
         width: setSquareSize(props.columnsNumber),
@@ -139,14 +139,14 @@ class Board extends React.Component {
       row[column] = this.renderSquare(i*width+column);
    
     return (
-      <div className="board-row">
+      <div className="md-board-row">
         <button
-          class="square gurd"
+          className="md-square md-gurd"
           style={{width: setSquareSize(width), height: setSquareSize(width)}}
         />
         {row}
         <button
-          class="square gurd"
+          className="md-square md-gurd"
           style={{width: setSquareSize(width), height: setSquareSize(width)}}
         />
       </div>
@@ -156,11 +156,11 @@ class Board extends React.Component {
   renderGurdRow(width) {
     let row = Array(width+2).fill(
                 <button
-                  class="square gurd"
+                  className="md-square md-gurd"
                   style={{width: setSquareSize(width), height: setSquareSize(width)}}
                 />);
     return (
-      <div className="board-row">
+      <div className="md-board-row">
         {row}
       </div>
     )
@@ -257,14 +257,14 @@ class MinesDetect extends React.Component {
     return (
       (loseStatus) ?
         (<h2
-          class="lose"
+          className="md-lose"
           style={{'font-size': window.innerWidth/30,}}
         >Game Over!!!
         </h2>) :
 
       (winStatus) ?
         (<h2
-          class="win"
+          className="md-win"
           style={{'font-size': window.innerWidth/20,}}
         >YOU WON!!!
         </h2>) :
@@ -317,18 +317,18 @@ class MinesDetect extends React.Component {
 
   render() {
     return (
-      <div className="game">
-        <div className="game-board">
+      <div className="md-game">
+        <div className="md-game-board">
 
           <div>
             <button
-              class = "flag-pick top-clicks"
+              className="flag-pick md-top-clicks"
               onClick = {() => this.flagPick()}
               style={{width: setSquareSize(this.state.width), height: setSquareSize(this.state.width), 'font-size': setSquareSize(this.state.width)/3}}
-            ><i class="fab fa-font-awesome-flag"></i>
+            ><i className="fab fa-font-awesome-flag"></i>
             </button>
             <button
-              class = "flags-number top-clicks"
+              className="flags-number md-top-clicks"
               style={{width: setSquareSize(this.state.width), height: setSquareSize(this.state.width), 'font-size': setSquareSize(this.state.width)/3}}
             > {this.state.flagsRemainder}
             </button>
@@ -350,22 +350,22 @@ class MinesDetect extends React.Component {
 
           <div>
             <button
-              class = "set-board down-clicks"
+              className="md-set-board md-down-clicks"
               onClick = {() => this.setBoardSize()}
               style={{width: 3*setSquareSize(this.state.width), height: setSquareSize(this.state.width), 'font-size': setSquareSize(this.state.width)/4}}
             >Manange Board
             </button>
             <button
-              class = "reset-board down-clicks"
+              className="md-reset-board md-down-clicks"
               onClick = {() => this.resetBoard()}
               style={{width: setSquareSize(this.state.width), height: setSquareSize(this.state.width), 'font-size': setSquareSize(this.state.width)/4}}
-            ><i class="fas fa-undo"></i>
+            ><i className="fas fa-undo"></i>
             </button>
           </div>
 
         </div>
 
-        <div className="game-info">
+        <div className="md-game-info">
           {this.renderGameInfo(this.state.winStatus, this.state.loseStatus)}
         </div>
       </div>

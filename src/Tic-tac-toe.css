@@ -1,0 +1,55 @@
+.ttt-square {
+    background-color: rgba(255, 255, 255, 0.116);
+    border: 0.1px solid rgb(29, 0, 0);
+    float: left;
+    font-weight: bold;
+    padding: 0;
+    text-align: center;
+    color: rgb(29, 0, 0);
+  }
+  .ttt-square:focus {
+    background-color: white;
+    outline: none;
+  }
+  .ttt-square + .ttt-win-square {
+      color: rgb(9, 37, 9);
+    background-color: rgba(0, 128, 0, 0.329);
+  }
+
+.ttt-gurd {
+    background-color: rgba(0, 0, 0, 0.61);
+    border: 0px;
+}
+
+.ttt-game {
+    margin: auto;
+    display: flex;
+    direction: row;
+}
+.ttt-game-board {
+    display: flex;
+}
+
+.ttt-game-info {
+    color: rgba(255, 254, 254, 0.459);
+}
+.ttt-game-status {
+    width: 100%;
+    font-size: 170%;
+    margin-left: 20%;
+}
+.ttt-move-steps {
+    width: 100%;
+}
+
+.ttt-move-step {
+    padding: 3%;
+    margin: 1%;
+    border: none;
+    color: rgba(255, 255, 255, 0.247);
+    background-color: rgba(6, 17, 26, 0.904);
+}
+    .ttt-move-step:focus {
+        border: 1px solid rgba(255, 255, 255, 0.247);
+        outline: none;
+    }
