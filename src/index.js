@@ -280,6 +280,7 @@ class Game extends React.Component {
   setBoardSize() {
     let length = Number(prompt('Length:'));
     if (!length) length = 10;
+    if (length > 100) length = 60;
 
     let width = Number(prompt('Width:'));
     if (!width) width = 10;
