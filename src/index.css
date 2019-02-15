@@ -6,7 +6,7 @@
 }
 
 .list-table {
-  width: 140px;
+  width: 20%;
   display: flex;
   flex-direction: column;
   background-color: #0b2020e1;
