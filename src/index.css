@@ -19,7 +19,6 @@ body {
     font-weight: bold;
     padding: 0;
     text-align: center;
-    color: rgb(70, 0, 0);
   }
   
   .square:focus {
@@ -49,18 +48,21 @@ body {
 
   .down-clicks {
     background-color: rgba(0, 0, 0, 0.61);
-    color: rgb(70, 0, 0);
+    color: rgb(102, 18, 18);
     border: 1px solid;
     border-top: 0px;
   }
   .top-clicks {
     background-color: rgba(0, 0, 0, 0.61);
-    color: rgb(70, 0, 0);
+    color: rgb(102, 18, 18);
     border: 1px solid;
     border-bottom: 0px;
     text-align: center;
   }
 
   .fa-bomb {
+    color: rgb(70, 0, 0);
+  }
+  .fa-font-awesome-flag {
     color: rgb(70, 0, 0);
   }

@@ -41,6 +41,15 @@ class Board extends React.Component {
     };
   }
 
+  flagUsedNumber() {
+    let flagsNumber = 0;
+    for (let index = 0; index < this.state.clickedSquares.length; index++) {
+      if(this.state.flagySquares[index] && !this.state.clickedSquares[index])
+        flagsNumber++;
+    }
+    return flagsNumber;
+  }
+
   reloadBoard() {
     this.setState({
       clickedSquares: Array(this.totalSize).fill(false),
@@ -49,35 +58,47 @@ class Board extends React.Component {
     });
     this.props.reloaded();
   }
+  
 
-  handleClick(i, emptySquaresNumber) {
+  putFlag(i) {
+    let flagySquares = this.state.flagySquares;
+    flagySquares[i] = !flagySquares[i];
+    this.setState({flagySquares: flagySquares});
+    this.props.flagPut();
+    return;
+  }
+  bombPick() {
+    this.props.setLose();
+    this.showAllSquares();
+  }
+  emptySquaresPick(i,emptySquaresNumber) {
+    let clickedSquares = this.state.clickedSquares;
+    clickedSquares[i] = true;
+    emptySquaresNumber.esn++;
+    if(this.props.values[i]===' ')
+      this.showNeighbours(i, emptySquaresNumber);
+    this.setState({clickedSquares: clickedSquares, emptySquaresNumber: emptySquaresNumber.esn});
+  }
+
+  openSquare(i, emptySquaresNumber) {
     if(this.props.flag) {
-      let flagySquares = this.state.flagySquares;
-      (flagySquares[i]) ? this.props.flagRestore() : this.props.flagUse();
-      flagySquares[i] = !flagySquares[i];
-      this.setState({flagySquares: flagySquares});
-      this.props.flagPut();
+      this.putFlag(i);
       return;
     }
-    if(this.state.flagySquares[i]) {
-      this.props.flagRestore();
-    }
-
     if(this.props.values[i]==='*') {
-      this.props.setLose();
-      this.showAllSquares();      
+      this.bombPick();
     }
     else {
-      let clickedSquares = this.state.clickedSquares;
-      clickedSquares[i] = true;
-      emptySquaresNumber.esn++;
-      if(this.props.values[i]===' ')
-        this.showNeighbours(i, emptySquaresNumber);
-      this.setState({clickedSquares: clickedSquares, emptySquaresNumber: emptySquaresNumber.esn});
+      this.emptySquaresPick(i, emptySquaresNumber);
     }
+  }
+
+  handleClick(i, emptySquaresNumber) {
+    this.openSquare(i , emptySquaresNumber);
     if(emptySquaresNumber.esn === this.props.length*this.props.width - this.props.bombsNumber) {
       this.props.setWin();
     }
+    this.props.setFlagsNumber(this.flagUsedNumber());
   }
 
   showNeighbours(index, emptySquaresNumber) {
@@ -86,14 +107,14 @@ class Board extends React.Component {
     let totalSize = length*width;
     let clickedSquares = this.state.clickedSquares;
 
-    if(index > width-1         && index%width!==0       && !clickedSquares[index-width-1]) this.handleClick(index-width-1, emptySquaresNumber);
-    if(index > width-1                                  && !clickedSquares[index-width]  ) this.handleClick(index-width, emptySquaresNumber)  ;
-    if(index > width-1         && index%width!==width-1 && !clickedSquares[index-width+1]) this.handleClick(index-width+1, emptySquaresNumber);
-    if(                           index%width!==0       && !clickedSquares[index-1]      ) this.handleClick(index-1, emptySquaresNumber)      ;
-    if(                           index%width!==width-1 && !clickedSquares[index+1]      ) this.handleClick(index+1, emptySquaresNumber)      ;
-    if(index < totalSize-width && index%width!==0       && !clickedSquares[index+width-1]) this.handleClick(index+width-1, emptySquaresNumber);
-    if(index < totalSize-width                          && !clickedSquares[index+width]  ) this.handleClick(index+width, emptySquaresNumber)  ;
-    if(index < totalSize-width && index%width!==width-1 && !clickedSquares[index+width+1]) this.handleClick(index+width+1, emptySquaresNumber);
+    if(index > width-1         && index%width!==0       && !clickedSquares[index-width-1]) this.emptySquaresPick(index-width-1, emptySquaresNumber);
+    if(index > width-1                                  && !clickedSquares[index-width]  ) this.emptySquaresPick(index-width, emptySquaresNumber)  ;
+    if(index > width-1         && index%width!==width-1 && !clickedSquares[index-width+1]) this.emptySquaresPick(index-width+1, emptySquaresNumber);
+    if(                           index%width!==0       && !clickedSquares[index-1]      ) this.emptySquaresPick(index-1, emptySquaresNumber)      ;
+    if(                           index%width!==width-1 && !clickedSquares[index+1]      ) this.emptySquaresPick(index+1, emptySquaresNumber)      ;
+    if(index < totalSize-width && index%width!==0       && !clickedSquares[index+width-1]) this.emptySquaresPick(index+width-1, emptySquaresNumber);
+    if(index < totalSize-width                          && !clickedSquares[index+width]  ) this.emptySquaresPick(index+width, emptySquaresNumber)  ;
+    if(index < totalSize-width && index%width!==width-1 && !clickedSquares[index+width+1]) this.emptySquaresPick(index+width+1, emptySquaresNumber);
   }
 
   showAllSquares() {
@@ -210,7 +231,7 @@ class Game extends React.Component {
       loseStatus: false,
       reload: true,
       flag: false,
-      flagsNumber: 10,
+      flagsRemainder: 10,
     };
   }
 
@@ -229,11 +250,8 @@ class Game extends React.Component {
   flagPut() {
     this.setState({flag:false});
   }
-  flagUse() {
-    this.setState({flagsNumber: this.state.flagsNumber - 1})
-  }
-  flagRestore() {
-    this.setState({flagsNumber: this.state.flagsNumber + 1})
+  setFlagsNumber(flagsNumber) {
+    this.setState({flagsRemainder: this.state.bombsNumber - flagsNumber})
   }
 
   renderGameInfo(winStatus, loseStatus) {
@@ -249,7 +267,7 @@ class Game extends React.Component {
         (<h2
           class="win"
           style={{'font-size': window.innerWidth/20,}}
-        >YOU WIN!!!
+        >YOU WON!!!
         </h2>) :
 
         (<h4 
@@ -261,8 +279,17 @@ class Game extends React.Component {
     
   setBoardSize() {
     let length = Number(prompt('Length:'));
+    if (!length) length = 10;
+    if (length > 100) length = 100;
+
     let width = Number(prompt('Width:'));
+    if (!width) width = 10;
+    if (width > 100) width = 100;
+
     let bombsNumber = Number(prompt('Bombs number:'));
+    if (!bombsNumber) bombsNumber = width*length/10;
+    if (bombsNumber > length*width) bombsNumber = length*width -1;
+
     let values = valueSeter(length, width, bombsNumber);
     this.setState({
       length: length,
@@ -273,7 +300,7 @@ class Game extends React.Component {
       values: values,
       reload: true,
       flag: false,
-      flagsNumber: bombsNumber,
+      flagsRemainder: bombsNumber,
     });
   }
 
@@ -285,7 +312,7 @@ class Game extends React.Component {
       values: values,
       reload: true,
       flag: false,
-      flagsNumber: this.state.bombsNumber,
+      flagsRemainder: this.state.bombsNumber,
     });
   }
 
@@ -304,7 +331,7 @@ class Game extends React.Component {
             <button
               class = "flags-number top-clicks"
               style={{width: setSquareSize(this.state.width), height: setSquareSize(this.state.width), 'font-size': setSquareSize(this.state.width)/3}}
-            > {this.state.flagsNumber}
+            > {this.state.flagsRemainder}
             </button>
           </div>
 
@@ -319,8 +346,7 @@ class Game extends React.Component {
             reloaded={() => this.setReloaded()}
             flag={this.state.flag}
             flagPut={() => this.flagPut()}
-            flagUse={() => this.flagUse()}
-            flagRestore={() => this.flagRestore()}
+            setFlagsNumber={(flagsNumber) => this.setFlagsNumber(flagsNumber)}
           />
 
           <div>
