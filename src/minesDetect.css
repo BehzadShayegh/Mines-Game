@@ -1,0 +1,54 @@
+  .square {
+    background: #11383896;
+    border: 0.1px solid rgba(131, 131, 131, 0.507);
+    float: left;
+    font-weight: bold;
+    padding: 0;
+    text-align: center;
+  }
+  
+  .square:focus {
+    background-color: rgb(255, 255, 255);
+  }
+  .square + .fill {
+    background-color: rgba(6, 17, 26, 0.842);
+    outline: none;
+    color: white;
+    border: 0px;
+  }
+
+  .gurd {
+    background-color: rgba(0, 0, 0, 0.61);
+    border: 0px;
+  }
+  
+  .game-info {
+    color: white;
+  }
+  .win {
+    color: green;
+  }
+  .lose {
+    color: red;
+  }
+
+  .down-clicks {
+    background-color: rgba(0, 0, 0, 0.61);
+    color: rgb(102, 18, 18);
+    border: 1px solid;
+    border-top: 0px;
+  }
+  .top-clicks {
+    background-color: rgba(0, 0, 0, 0.61);
+    color: rgb(102, 18, 18);
+    border: 1px solid;
+    border-bottom: 0px;
+    text-align: center;
+  }
+
+  .fa-bomb {
+    color: rgb(70, 0, 0);
+  }
+  .fa-font-awesome-flag {
+    color: rgb(70, 0, 0);
+  }

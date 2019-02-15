@@ -1,0 +1,14 @@
+html {
+  height: 100%;
+}
+body {
+  background-color: #313131;
+  background-image: url("https://wallpaper.wiki/wp-content/uploads/2017/04/wallpaper.wiki-Cool-dark-widescreen-wallpapers-1920x1080-PIC-WPD009264.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;   
+}
+h1 {
+  color: blueviolet;
+}
