@@ -3,7 +3,7 @@ import './minesDetect.css';
 
 function setSquareSize(columnsNumber) {
   let baseSize = Math.min(window.innerWidth,window.innerHeight);
-  return baseSize/(columnsNumber+5);
+  return (baseSize*3/4)/(columnsNumber+5);
 }
 
 function Square(props) {

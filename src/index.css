@@ -1,4 +1,51 @@
-.mines-detect {
+
+.under-head {
     display: flex;
+    flex-direction: row-reverse;
+    height: 100%;
+}
+
+.list-table {
+  width: 140px;
+  display: flex;
+  flex-direction: column;
+  background-color: #0b2020e1;
+  text-align: center;
+}
+
+.game-choice-box {
+  text-align: left;
+  border-left: 3px solid black;
+  padding: 8%;
+}
+.selected-game-choice-box {
+  text-align: left;
+  background-color: #072020;
+  border-left: none;
+  padding: 8%;
+}
+
+.game-choice {
+  background: none;
+  border: none;
+  font-size: 80%;
+}
+  .game-choice:focus {
+    outline: none;
+  }
+
+.running-game {
+    display: flex;
+    margin: auto;
+    margin-top: 3%;
     justify-content: center;
+}
+.game-name {
+  color: white;
+}
+
+.fa-hand-middle-finger {
+  margin-top: 100px;
+  color: yellow;
+  font-size: 500%;
 }
