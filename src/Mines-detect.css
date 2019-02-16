@@ -1,4 +1,15 @@
-  .md-square {
+@keyframes board-start {
+  from {margin-top: 300%;}
+  to {margin-top: 0px;}
+}
+
+.md-game {
+  margin: auto;
+  animation-name: board-start;
+  animation-duration: 1s;
+}
+
+.md-square {
     background: #11383896;
     border: 0.1px solid rgba(131, 131, 131, 0.507);
     float: left;
