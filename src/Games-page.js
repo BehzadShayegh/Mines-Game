@@ -62,15 +62,15 @@ class GameKeeper extends React.Component {
         <div class="mines-detect">
           <MinesDetect/>
         </div>
-      )
+      );
     else if(gameName === "Tic Tac Toe")
         return (
           <div class="tic-tac-toe">
             <TicTacToe/>
           </div>
-        )
+        );
     
-    else return (<p class="game-name">{gameName}</p>)
+    else return (<p class="game-name">{gameName}</p>);
   }
 
   setGame(gameName) {
