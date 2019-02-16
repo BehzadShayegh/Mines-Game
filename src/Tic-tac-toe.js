@@ -190,7 +190,12 @@ class TicTacToe extends React.Component {
     if (winner) {
       status = <p>{"Winner: "}{winner}</p>;
       status_color = "green";
-    } else {
+    }
+    else if(this.state.stepNumber === 9) {
+      status = <p>{"Tie . . . . ."}</p>
+      status_color = "white";
+    }
+    else {
       status = (this.state.xIsNext) ? (<p>{"Next player: "}<i class="fas fa-bullseye"></i></p>) :
       (<p>{"Next player: "}<i class="fas fa-crosshairs"></i></p>);
     }
