@@ -38,6 +38,9 @@
     border: 1px solid;
     border-top: 0px;
   }
+    .md-down-clicks:focus {
+      outline: none;
+    }
   .md-top-clicks {
     background-color: rgba(0, 0, 0, 0.61);
     color: rgb(102, 18, 18);
@@ -46,9 +49,9 @@
     text-align: center;
   }
 
-  .md-fa-bomb {
+  .fa-bomb {
     color: rgb(70, 0, 0);
   }
-  .md-fa-font-awesome-flag {
+  .fa-font-awesome-flag {
     color: rgb(70, 0, 0);
   }

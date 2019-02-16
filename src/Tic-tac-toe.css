@@ -12,7 +12,7 @@
     outline: none;
   }
   .ttt-square + .ttt-win-square {
-      color: rgb(9, 37, 9);
+    color: rgb(9, 37, 9);
     background-color: rgba(0, 128, 0, 0.329);
   }
 
@@ -23,8 +23,6 @@
 
 .ttt-game {
     margin: auto;
-    display: flex;
-    direction: row;
 }
 .ttt-game-board {
     display: flex;
@@ -35,10 +33,9 @@
 }
 .ttt-game-status {
     width: 100%;
-    font-size: 170%;
-    margin-left: 20%;
 }
 .ttt-move-steps {
+    margin-left: -20%;
     width: 100%;
 }
 
@@ -53,3 +50,20 @@
         border: 1px solid rgba(255, 255, 255, 0.247);
         outline: none;
     }
+
+.ttt-down-clicks {
+    background-color: rgba(0, 0, 0, 0.61);
+    color: rgb(58, 0, 0);
+    border: 1px solid;
+    border-top: 0px;
+}
+    .ttt-down-clicks:focus {
+        outline: none;
+    }
+
+.fa-bullseye {
+    color: red;
+}
+.fa-crosshairs {
+    color: blue;
+}

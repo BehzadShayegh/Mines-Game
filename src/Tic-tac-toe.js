@@ -149,6 +149,15 @@ class TicTacToe extends React.Component {
     });
   }
 
+  reset() {
+    this.jumpTo(0);
+    this.setState({
+      history: [{squares: Array(9).fill(null)}],
+      stepNumber: 0,
+      xIsNext: true
+    });
+  }
+
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
@@ -194,6 +203,14 @@ class TicTacToe extends React.Component {
             onClick={i => this.handleClick(i)}
             winLine={winLine}
           />
+        </div>
+        <div>
+          <button
+            className="ttt-reset-board ttt-down-clicks"
+            onClick = {() => this.reset()}
+            style={{width: setSquareSize(5), height: setSquareSize(5), 'font-size': setSquareSize(5)/4}}
+          ><i className="fas fa-undo"></i>
+          </button>
         </div>
         <div className="ttt-game-info">
           <div className="ttt-game-status" style={{color: status_color}}>{status}</div>
