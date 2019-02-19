@@ -30,28 +30,56 @@ function Square(props) {
     <button
       className="pz-square"
       onClick={props.onClick}
-      style={squareStyle
-        (setSquareSize(props.columnsNumber), props.i ,
-        props.rowsNumber, props.columnsNumber, props.background)
-      }>
+      style={squareStyle(
+        setSquareSize(props.columnsNumber), props.i ,
+        props.rowsNumber, props.columnsNumber, props.background
+      )}>
     </button>);
 }
 
-function setPoss(size) {
+function swap(array, i, j) {
+  let k = array[i];
+  array[i] = array[j];
+  array[j] = k;
+}
+
+function setPoss(length, width) {
+  let size = width*length;
   let array = Array(size);
   for (let index = 0; index < size; index++)
     array[index] = index;
+  let freeSquare = 0;
 
-  var currentIndex = array.length, temporaryValue, randomIndex;
-
-  while (0 !== currentIndex) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }  
+  for (let i=0; i<size**2; i++) {
+    switch(Math.floor(Math.random()*4)) {
+      default:
+      case 0: if (freeSquare < (width*length)-width) {
+        swap(array, freeSquare, freeSquare+width);
+        freeSquare += width;
+      }
+      //alert("down");
+      break;
+      case 1: if (freeSquare%width!==width-1) {
+        swap(array, freeSquare, freeSquare+1);
+        freeSquare += 1;
+      }
+      //alert("right");
+      break;
+      case 2: if (freeSquare > width-1) {
+        swap(array, freeSquare, freeSquare-width);
+        freeSquare -= width;
+      }
+      //alert("up");
+      break;
+      case 3: if (freeSquare%width!==0) {
+        swap(array, freeSquare, freeSquare-1);
+        freeSquare -= 1;
+      }
+      //alert("left");
+      break;
+    }
+  }
+  
   return array;
 }
 
@@ -60,14 +88,14 @@ class Board extends React.Component {
     super(props);
     this.state = {
       squares: this.setBoard(),
-      poss: setPoss(this.props.length*this.props.width),
+      poss: setPoss(this.props.length,this.props.width),
     };
   }
 
   checkEnd(poss) {
     let win = true;
     for (let index = 0; index < poss.length; index++) {
-      if(poss[index] != index) {
+      if(poss[index] !== index) {
         win = false;
         break;
       }
@@ -79,7 +107,7 @@ class Board extends React.Component {
   reloadBoard() {
     this.setState({
       squares: this.setBoard(),
-      poss: setPoss(this.props.length*this.props.width),
+      poss: setPoss(this.props.length,this.props.width),
     });
     this.props.reloaded();
   }
@@ -212,13 +240,13 @@ class Puzzle extends React.Component {
   }
     
   setBoardSize() {
-    let length = Number(prompt('Length:'));
+    let length = Number(prompt('Length: (1-50)'));
     if (!length || length < 1) length = 4;
-    if (length > 100) length = 60;
+    if (length > 50) length = 50;
 
-    let width = Number(prompt('Width:'));
-    if (!width || width < 1) width = 4;
-    if (width > 100) width = 60;
+    let width = Number(prompt('Width: (3-50)'));
+    if (!width || width < 3) width = 4;
+    if (width > 50) width = 50;
 
     this.setState({
       length: length,
@@ -292,7 +320,7 @@ class Puzzle extends React.Component {
               className="pz-set-pic pz-down-clicks"
               onClick = {() => this.setPic()}
               style={{width: setSquareSize(this.state.width), height: setSquareSize(this.state.width), 'font-size': setSquareSize(this.state.width)/4}}
-            >Picture
+            ><i class="fas fa-images"></i>
             </button>
           </div>
 

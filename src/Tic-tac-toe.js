@@ -37,6 +37,7 @@ function Square(props) {
         width: setSquareSize(5),
         height: setSquareSize(5),
         'font-size': setSquareSize(5)/2,
+        'box-shadow': 'inset 1px 6px 12px white, inset -0.1px -1px 0.5px darkgreen, 1px 2px 1px black',
     }}> {(props.value === 'X') ? <i class="fas fa-bullseye"></i> :
        (props.value === 'O') ? <i class="fas fa-crosshairs"></i> :
       null}

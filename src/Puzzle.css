@@ -21,12 +21,6 @@
       background-color: rgb(255, 255, 255);
       outline: none;
     }
-    .pz-square + .fill {
-      background-color: rgba(6, 17, 26, 0.842);
-      outline: none;
-      color: white;
-      border: 0px;
-    }
   
     .pz-gurd {
       background-color: rgba(0, 0, 0, 0.61);

@@ -277,12 +277,12 @@ class MinesDetect extends React.Component {
   }
     
   setBoardSize() {
-    let length = Number(prompt('Length:'));
+    let length = Number(prompt('Length: (1-60)'));
     if (!length || length < 1) length = 10;
     if (length > 100) length = 60;
 
-    let width = Number(prompt('Width:'));
-    if (!width || width < 1) width = 10;
+    let width = Number(prompt('Width: (3-60)'));
+    if (!width || width < 3) width = 10;
     if (width > 100) width = 60;
 
     let bombsNumber = Number(prompt('Bombs number:'));
