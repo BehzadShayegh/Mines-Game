@@ -251,6 +251,15 @@ class Puzzle extends React.Component {
     });
   }
 
+  setPic() {
+    let newPic = prompt("Enter your picture url");
+
+    if(newPic)
+      this.setState({
+        picture: newPic,
+      });
+  }
+
   render() {
     return (
       <div className="pz-game">
@@ -278,6 +287,12 @@ class Puzzle extends React.Component {
               onClick = {() => this.resetBoard()}
               style={{width: setSquareSize(this.state.width), height: setSquareSize(this.state.width), 'font-size': setSquareSize(this.state.width)/4}}
             ><i className="fas fa-undo"></i>
+            </button>
+            <button
+              className="pz-set-pic pz-down-clicks"
+              onClick = {() => this.setPic()}
+              style={{width: setSquareSize(this.state.width), height: setSquareSize(this.state.width), 'font-size': setSquareSize(this.state.width)/4}}
+            >Picture
             </button>
           </div>
 
