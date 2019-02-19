@@ -228,7 +228,7 @@ class Puzzle extends React.Component {
       (winStatus) ?
         (<h2
           className="pz-win"
-          style={{'font-size': window.innerWidth/20,}}
+          style={{'font-size': window.innerWidth/35,}}
         >YOU WON!!! {this.state.moves}
         </h2>) :
 
@@ -240,8 +240,8 @@ class Puzzle extends React.Component {
   }
     
   setBoardSize() {
-    let length = Number(prompt('Length: (1-50)'));
-    if (!length || length < 1) length = 4;
+    let length = Number(prompt('Length: (3-50)'));
+    if (!length || length < 3) length = 4;
     if (length > 50) length = 50;
 
     let width = Number(prompt('Width: (3-50)'));
