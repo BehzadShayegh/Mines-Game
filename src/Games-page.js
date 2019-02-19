@@ -1,13 +1,14 @@
 import React from 'react';
 import MinesDetect from './Mines-detect.js';
 import TicTacToe from './Tic-tac-toe.js';
+import Puzzle from './Puzzle.js';
 import './Games-page.css';
 
 class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      gamesList: ["Mines Detect","Zoooo","Tic Tac Toe"],
+      gamesList: ["Mines Detect","Tic Tac Toe","Puzzle","Ready to Deploy"],
     };
   }
 
@@ -64,11 +65,17 @@ class GameKeeper extends React.Component {
         </div>
       );
     else if(gameName === "Tic Tac Toe")
-        return (
-          <div class="tic-tac-toe">
-            <TicTacToe/>
-          </div>
-        );
+      return (
+        <div class="tic-tac-toe">
+          <TicTacToe/>
+        </div>
+      );
+    else if(gameName === "Puzzle")
+      return (
+        <div class="puzzle">
+          <Puzzle/>
+        </div>
+      )
     
     else return (<p class="game-name">{gameName}</p>);
   }

@@ -1,0 +1,68 @@
+@keyframes board-start {
+    from {margin-top: 400%;}
+    to {margin-top: 0px;}
+  }
+  
+  .pz-game {
+    margin: auto;
+    animation-name: board-start;
+    animation-duration: 1s;
+  }
+  
+  .pz-square {
+      border: 0.1px solid rgba(131, 131, 131, 0.507);
+      float: left;
+      font-weight: bold;
+      padding: 0;
+      text-align: center;
+    }
+    
+    .pz-square:focus {
+      background-color: rgb(255, 255, 255);
+      outline: none;
+    }
+    .pz-square + .fill {
+      background-color: rgba(6, 17, 26, 0.842);
+      outline: none;
+      color: white;
+      border: 0px;
+    }
+  
+    .pz-gurd {
+      background-color: rgba(0, 0, 0, 0.61);
+      border: 0px;
+    }
+    
+    .pz-game-info {
+      color: white;
+    }
+    .pz-win {
+      color: green;
+    }
+    .pz-lose {
+      color: red;
+    }
+  
+    .pz-down-clicks {
+      background-color: rgba(0, 0, 0, 0.61);
+      color: rgb(102, 18, 18);
+      border: 1px solid;
+      border-top: 0px;
+    }
+      .pz-down-clicks:focus {
+        outline: none;
+      }
+    .pz-top-clicks {
+      background-color: rgba(0, 0, 0, 0.61);
+      color: rgb(102, 18, 18);
+      border: 1px solid;
+      border-bottom: 0px;
+      text-align: center;
+    }
+  
+    .fa-bomb {
+      color: rgb(70, 0, 0);
+    }
+    .fa-font-awesome-flag {
+      color: rgb(70, 0, 0);
+    }
