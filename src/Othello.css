@@ -1,0 +1,80 @@
+@keyframes board-start {
+    from {margin-top: 400%;}
+    to {margin-top: 0px;}
+  }
+
+.ot-game {
+    margin: auto;
+    animation-name: board-start;
+    animation-duration: 1s;
+}
+.ot-game-board {
+    display: flex;
+    flex-direction: column;
+}
+
+.ot-square {
+    background-color: rgb(77, 41, 0);
+    border: 0.1px solid rgb(29, 0, 0);
+    float: left;
+    font-weight: bold;
+    padding: 0;
+    text-align: center;
+  }
+  .ot-square:focus {
+    background-color: white;
+    outline: none;
+  }
+  .ot-square + .ot-win-square {
+    color: rgb(9, 37, 9);
+    background-color: rgba(0, 128, 0, 0.329);
+  }
+
+.ot-gurd {
+    background-color: rgba(0, 0, 0, 0.61);
+    border: 0px;
+}
+
+.ot-down-clicks {
+    background-color: rgba(0, 0, 0, 0.61);
+    color: rgb(58, 0, 0);
+    border: 1px solid;
+    border-top: 0px;
+}
+    .ot-down-clicks:focus {
+        outline: none;
+    }
+
+.ot-game-info {
+    color: rgba(255, 254, 254, 0.459);
+}
+.ot-game-status {
+    width: 100%;
+}
+.ot-move-steps {
+    margin-left: -20%;
+    width: 100%;
+}
+
+.ot-move-step {
+    padding: 3%;
+    margin: 1%;
+    border: none;
+    color: rgba(255, 255, 255, 0.247);
+    background-color: rgba(6, 17, 26, 0.904);
+}
+    .ot-move-step:focus {
+        border: 1px solid rgba(255, 255, 255, 0.247);
+        outline: none;
+    }
+
+.white {
+    color: white;
+}
+.black {
+    color: black;
+}
+
+.fa-circle {
+    font-size: 175%;
+}

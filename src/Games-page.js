@@ -2,13 +2,14 @@ import React from 'react';
 import MinesDetect from './Mines-detect.js';
 import TicTacToe from './Tic-tac-toe.js';
 import Puzzle from './Puzzle.js';
+import Othello from './Othello';
 import './Games-page.css';
 
 class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      gamesList: ["Mines Detect","Tic Tac Toe","Puzzle","Ready to Deploy"],
+      gamesList: ["Mines Detect","Tic Tac Toe","Puzzle","Othello","Ready to Deploy"],
     };
   }
 
@@ -74,6 +75,12 @@ class GameKeeper extends React.Component {
       return (
         <div class="puzzle">
           <Puzzle/>
+        </div>
+      )
+    else if(gameName === "Othello")
+      return (
+        <div class="Othello">
+          <Othello/>
         </div>
       )
     

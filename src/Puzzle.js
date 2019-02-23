@@ -13,7 +13,7 @@ function squareStyle(squareSize, i, row, column, pic) {
     height: squareSize,
     'background-image': 'url('+pic+')',
     'background-size': squareSize*column+'px '+squareSize*row+'px',
-    'background-position': (100*(i%row))/(row-1)+'% '+(100*Math.floor(i/row))/(column-1)+'%',
+    'background-position': (100*(i%column))/(column-1)+'% '+(100*Math.floor(i/column))/(row-1)+'%',
     'background-repeat': 'no-repeat',
   }) :
   ({
@@ -57,25 +57,21 @@ function setPoss(length, width) {
         swap(array, freeSquare, freeSquare+width);
         freeSquare += width;
       }
-      //alert("down");
       break;
       case 1: if (freeSquare%width!==width-1) {
         swap(array, freeSquare, freeSquare+1);
         freeSquare += 1;
       }
-      //alert("right");
       break;
       case 2: if (freeSquare > width-1) {
         swap(array, freeSquare, freeSquare-width);
         freeSquare -= width;
       }
-      //alert("up");
       break;
       case 3: if (freeSquare%width!==0) {
         swap(array, freeSquare, freeSquare-1);
         freeSquare -= 1;
       }
-      //alert("left");
       break;
     }
   }
