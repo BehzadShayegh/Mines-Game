@@ -54,7 +54,7 @@ class GameKeeper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      runningGame: "Othello",
+      runningGame: "Mines Detect",
     };
   }
 
