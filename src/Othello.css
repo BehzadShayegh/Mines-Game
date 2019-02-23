@@ -89,7 +89,7 @@
 }
 
 pre.white-number , pre.black-number {
-    font-size: 200%;
+    font-size: 100%;
     font-weight: bold;
     text-decoration: underline;
 }
@@ -102,5 +102,5 @@ pre.black-number {
 
 .win-message {
     color: green;
-    font-size: 250%;
+    font-size: 150%;
 }
