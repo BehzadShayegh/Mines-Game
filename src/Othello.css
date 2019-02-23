@@ -21,8 +21,10 @@
     padding: 0;
     text-align: center;
   }
+  .ot-onClick-square {
+    background-color: rgba(77, 41, 0, 0.336);
+  }
   .ot-square:focus {
-    background-color: white;
     outline: none;
   }
   .ot-square + .ot-win-square {
@@ -68,13 +70,37 @@
         outline: none;
     }
 
-.white {
+.ot-white {
     color: white;
 }
-.black {
+.ot-black {
     color: black;
+}
+
+.ot-white-onClick-square {
+    color: rgba(255, 255, 255, 0.233);
+}
+.ot-black-onClick-square {
+    color: rgba(0, 0, 0, 0.308);
 }
 
 .fa-circle {
     font-size: 175%;
+}
+
+pre.white-number , pre.black-number {
+    font-size: 200%;
+    font-weight: bold;
+    text-decoration: underline;
+}
+pre.white-number {
+    color: white;
+}
+pre.black-number {
+    color: black;
+}
+
+.win-message {
+    color: green;
+    font-size: 250%;
 }
