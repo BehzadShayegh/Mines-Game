@@ -9,7 +9,7 @@ class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      gamesList: ["Mines Detect","Tic Tac Toe","Puzzle","Othello","Ready to Deploy"],
+      gamesList: ["Mines Detect","Tic Tac Toe","Puzzle","Othello",],
     };
   }
 

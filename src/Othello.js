@@ -138,7 +138,7 @@ class Board extends React.Component {
     if(this.state.values[i]) return []
     let act = [];
     if (this.state.values[i-this.props.width-1] && i%this.props.width !== 0)
-      this.makeStep(act, i-this.props.widthpush_back-1, -this.props.widthpush_back-1, player);
+      this.makeStep(act, i-this.props.width-1, -this.props.width-1, player);
     if (this.state.values[i-this.props.width])
       this.makeStep(act, i-this.props.width, -this.props.width, player);
     if (this.state.values[i-this.props.width+1] && i%this.props.width !== this.props.width-1)
