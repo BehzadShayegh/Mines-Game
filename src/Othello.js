@@ -253,8 +253,8 @@ class Othello extends React.Component {
   renderGameInfo() {
     let win = ((this.state.whiteNumber+this.state.blackNumber) === (this.state.length*this.state.width))
     let winMessage = (this.state.whiteNumber===this.state.blackNumber) ? `Tie . . . ${this.state.whiteNumber}` :
-                    (this.state.whiteNumber>this.state.blackNumber) ? `White Win . . . ${this.state.whiteNumber}` :
-                    `Black Win . . . ${this.state.blackNumber}`;
+                    (this.state.whiteNumber>this.state.blackNumber) ? `White Wins . . . ${this.state.whiteNumber}` :
+                    `Black Wins . . . ${this.state.blackNumber}`;
     return win ? 
     (
       <h1 class="win-message">{winMessage}</h1>

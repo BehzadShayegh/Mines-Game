@@ -271,7 +271,7 @@ class MinesDetect extends React.Component {
 
         (<h4 
           style={{'font-size': window.innerWidth/50}}
-        >There are still mines for detection ...
+        >Still there are mines for detection ...
         </h4>)
     );
   }

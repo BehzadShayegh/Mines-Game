@@ -252,7 +252,7 @@ class Puzzle extends React.Component {
       moves: 0,
       win: false,
     });
-  }
+  }  
 
   resetBoard() {
     this.setState({
@@ -276,7 +276,7 @@ class Puzzle extends React.Component {
   }
 
   setPic() {
-    let newPic = prompt("Enter your picture url");
+    let newPic = prompt("Enter your picture's URL:");
 
     if(newPic)
       this.setState({
