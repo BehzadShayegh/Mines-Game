@@ -54,14 +54,14 @@ class GameKeeper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      runningGame: "Mines Detect",
+      runningGame: "Mines Detection",
     };
   }
 
   selectGame(gameName) {
-    if(gameName === "Mines Detect")
+    if(gameName === "Mines Detection")
       return (
-        <div class="mines-detect">
+        <div class="Mines-Detection">
           <MinesDetect/>
         </div>
       );
